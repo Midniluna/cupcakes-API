@@ -1,0 +1,28 @@
+/* do NOT do anything here exc confirm it's connected until the main stuff is finished. You know how you are */
+
+body {
+	background-color: bisque;
+	padding: 20px;
+}
+
+ul {
+	list-style: none;
+}
+
+li {
+	font-size: 18px;
+}
+
+.btn {
+	padding: 0px 6px;
+}
+
+.cupcake-wrapper {
+	margin-top: 20px;
+}
+
+.Cupcake-img {
+	max-width: 200px;
+	max-height: 200px;
+	margin: 10px 0px;
+}
