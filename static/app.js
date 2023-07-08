@@ -1,10 +1,5 @@
 const BASE_URL = "http://localhost:5000/api";
 
-// Show slider value
-$(document).on("input change", "#form-rating", function () {
-	$("#slider-value").html($(this).val());
-});
-
 // Used as a visual representation of cupcake data
 function generateCupcakeHTML(cupcake) {
 	return `
@@ -13,11 +8,12 @@ function generateCupcakeHTML(cupcake) {
           ${cupcake.flavor} / ${cupcake.size} / ${cupcake.rating}
           <button class="delete-button btn btn-danger btn-sm">X</button>
         </li>
-        <a href="${BASE_URL}/cupcakes/${cupcake.id}"><img class="Cupcake-img"
+        <a href="#"><img class="Cupcake-img"
               src="${cupcake.image}"
               alt="(no image provided)"></a>
       </div>
     `;
+	// <a href="cupcakes/${cupcake.id}">
 }
 
 // Show initial cupcakes
@@ -32,10 +28,12 @@ async function showAllCupcakes() {
 // Make a new cupcake
 $("#new-cupcake-form").on("submit", async function (evt) {
 	evt.preventDefault();
-	let flavor = $("#form-flavor").val().toLowerCase();
-	let size = $("#form-size").val().toLowerCase();
-	let rating = $("#form-rating").val();
-	let image = $("#form-image").val();
+
+	let flavor = $("#flavor").val().toLowerCase();
+	let size = $("#size").val();
+	let rating = $("#rating").val();
+	let image = $("#image").val();
+
 	const newCupcakeResponse = await axios.post(`${BASE_URL}/cupcakes`, {
 		flavor,
 		rating,
@@ -45,10 +43,38 @@ $("#new-cupcake-form").on("submit", async function (evt) {
 	newCupcake = generateCupcakeHTML(newCupcakeResponse.data.cupcake);
 	$("#cupcakes-list").append(newCupcake);
 	$("#new-cupcake-form").trigger("reset");
-	$("#slider-value").val() = 5;
 });
 
-// Potential investment: Add a way to view and edit a single cupcake
+// Edit a single cupcake
+// ---------- I got frustrated anbd gave up for now :sob emoji: --------------
+// $("#update-cupcake-form").on("submit", async function (evt) {
+// 	evt.preventDefault();
+
+// 	let flavor;
+// 	let rating;
+// 	let image;
+
+// 	if ($("#flavor").val() != "") {
+// 		flavor = $("#flavor").val().toLowerCase();
+// 	}
+// 	if ($("#rating").val() != "") {
+// 		rating = $("#rating").val();
+// 	}
+// 	if ($("#image").val() != "") {
+// 		image = $("#image").val();
+// 	}
+
+// 	let size = $("#size").val();
+
+// 	await axios.patch(`${BASE_URL}/cupcakes`, {
+// 		flavor,
+// 		rating,
+// 		size,
+// 		image,
+// 	});
+
+// 	window.location.reload();
+// });
 
 // Delete a cupcake
 $("#cupcakes-list").on("click", ".delete-button", async function (evt) {

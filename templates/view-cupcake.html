@@ -1,0 +1,18 @@
+{% extends 'index.html' %} {% block title %}view {{cupcake.flavor}} cupcake{%
+endblock %} {% block content %}
+<div data-cupcake-id="{{cupcake.id}}" class="cupcake-wrapper single">
+	<h3>{{cupcake.flavor}} cupcake</h3>
+	<img
+		src="{{cupcake.image}}"
+		class="Cupcake-img"
+		alt="{{cupcake.flavor}} cupcake"
+	/>
+	<p><b>Rating:</b> {{cupcake.rating}}</p>
+	<p><b>Size:</b> {{cupcake.size}}</p>
+</div>
+<hr />
+<h4>Edit Cupcake</h4>
+{% include 'cupcakes-form.html' %}
+<br />
+<a href="/">Go back</a>
+{% endblock %}

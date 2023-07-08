@@ -15,7 +15,7 @@ app.config["SQLALCHEMY_ECHO"] = get_echo_TorF()
 app.config["SECRET_KEY"] = "so-key such-secret"
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 
-debug = DebugToolbarExtension(app)
+# debug = DebugToolbarExtension(app)
 
 connect_db(app)
 
@@ -28,7 +28,19 @@ def index_page():
     """Renders html template that populates homepage with existing cupcakes"""
 
     cupcakes = Cupcake.query.all()
-    return render_template('index.html', cupcakes = cupcakes)
+    form = addCupcakeForm()
+    formid = 'id=new-cupcake-form'
+    return render_template('homepage.html', cupcakes = cupcakes, form = form, formid = formid)
+
+# This route does not exist </3
+# @app.route('/cupcakes/<int:id>')
+# def view_cupcake(id):
+#     """Renders page for individual cupcake"""
+
+#     cupcake = Cupcake.query.get_or_404(id)
+#     form = addCupcakeForm()
+#     formid = 'id=update-cupcake-form'
+#     return render_template('view-cupcake.html', cupcake = cupcake, form = form, formid = formid)
 
 @app.route('/api/cupcakes')
 def get_cupcakes():
