@@ -1,6 +1,5 @@
 <form {{formid}}>
-	{{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
-	'hidden' %}
+	{% for field in form if field.id != 'csrf_token' %}
 	<div class="form-group">
 		{{ field.label }} {{ field }} {% for error in field.errors %} {{ error }} {%
 		endfor %}
@@ -12,3 +11,4 @@
 
 <!-- Like :( WHY is it showing the csrf token now it says right up there it should be hidden.... dies  -->
 <!-- I made a whole mess of this thing...hgrrfhfhfhfh ue ue ue -->
+<!-- Adding the  formId  thing in the form was a good idea I think but I wasn't able to succeed with the plan I had with it so I'm taking it out again for now-->
